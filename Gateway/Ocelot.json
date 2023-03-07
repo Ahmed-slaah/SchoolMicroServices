@@ -1,0 +1,84 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5020" //gateway server 
+  },
+  "Routes": [
+    //student service routes
+    {
+      "UpstreamPathTemplate": "/gateway/Student", //calling api from gateway
+      "UpstreamHttpMethod": [ "Get" ], //method type
+      "DownstreamPathTemplate": "/api/Student/getAll", //called api from service
+      "DownstreamScheme": "http", //my protocol 
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", //server of called service 
+          "Port": 5019 //port of called service
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Student/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Student/getStudent/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Student",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Student/addStudent",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5019
+        }
+      ]
+    },
+
+    //teacher service routes
+
+    {
+      "UpstreamPathTemplate": "/gateway/Teacher",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Teacher/getAll",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5018
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Teacher/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Teacher/getTeacher/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5018
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Teacher",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Teacher/addTeacher",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5018
+        }
+      ]
+    }
+
+  ]
+}
